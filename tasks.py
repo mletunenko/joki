@@ -9,11 +9,18 @@ def first_non_repeating_letter(string):
             return string[i]
     return ''
 
+# Потребуется еще одна функция create_gen которая, в которой будет создаваться бесконечный генератор из переданной
+# строки. Функцию wrapper применим, что бы обернуть функцию next(). Поскольку переменная generator для функции wrapper
+# является внешней, состояние генератора будет сохранено.
 def make_looper(string):
-    def create_func():
-        gen = iter(string)
-        return
-    return create_func()
+    def create_gen(string):
+        while True:
+            for i in string:
+                yield (i)
+    generator =create_gen(string)
+    def wrapper():
+        return next(generator)
+    return wrapper
 
 # С помощью рекурсии перебираем все уникальные комбинации номиналов и подсчитываем в переменной n те комбинации,
 # которые удовлетворяют условию. В условии задачи сказано, что функция должна принимать на вход две переменные,
